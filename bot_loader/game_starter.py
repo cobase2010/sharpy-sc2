@@ -182,7 +182,7 @@ Builds:
         time = datetime.now().strftime("%Y-%m-%d %H_%M_%S")
         randomizer = random.randint(0, 999999)
         # Randomizer is to make it less likely that games started at the same time have same name
-        file_name = f"{player2}_{map_name}_{time}_{randomizer}"
+        file_name = f"{player1}_{player2}_{map_name}_{time}_{randomizer}"
         path = f"{folder}/{file_name}.log"
 
         if self.config.getboolean("general", "log_file"):
@@ -197,16 +197,20 @@ Builds:
         print(f"{player1} vs {player2}")
 
         runner = MatchRunner()
+        replay_file =f"{folder}/{file_name}"
+
+        print("Real time:", args.real_time)
         result = runner.run_game(
             maps.get(map_name),
             [player1_bot, player2_bot],
             player1_id=player1,
             realtime=args.real_time,
             game_time_limit=(30 * 60),
-            save_replay_as=f"{folder}/{file_name}.SC2Replay",
+            save_replay_as=f"{folder}/{file_name}",
             start_port=args.port,
         )
 
+        os.rename(replay_file, f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
         if args.requirewin:
             if args.requirewin == "1" and result != Result.Victory:
                 raise Exception("Player 1 needed to win the game!")
