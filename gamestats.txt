@@ -1,0 +1,6 @@
+Name        Win     Loss    Draw    win rate
+stalker:    56      23      1       69.1358 %
+flexbot4.0  19      21      0       40.425533 %
+
+
+

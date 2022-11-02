@@ -182,7 +182,7 @@ Builds:
         time = datetime.now().strftime("%Y-%m-%d %H_%M_%S")
         randomizer = random.randint(0, 999999)
         # Randomizer is to make it less likely that games started at the same time have same name
-        file_name = f"{player1}_{player2}_{map_name}_{time}_{randomizer}"
+        file_name = f"{player2}_{map_name}_{time}_{randomizer}_{player1}"
         path = f"{folder}/{file_name}.log"
 
         if self.config.getboolean("general", "log_file"):
@@ -206,11 +206,11 @@ Builds:
             player1_id=player1,
             realtime=args.real_time,
             game_time_limit=(30 * 60),
-            save_replay_as=f"{folder}/{file_name}",
+            save_replay_as=f"{folder}/{file_name}.SC2Replay",
             start_port=args.port,
         )
-
-        os.rename(replay_file, f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
+        # print("Renaming replay file to", f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
+        # os.rename(replay_file, f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
         if args.requirewin:
             if args.requirewin == "1" and result != Result.Victory:
                 raise Exception("Player 1 needed to win the game!")
