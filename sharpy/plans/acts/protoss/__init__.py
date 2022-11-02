@@ -8,4 +8,5 @@ from .defensive_cannons import DefensiveCannons
 from .protoss_unit import ProtossUnit
 from .restore_power import RestorePower
 from .warp_unit import WarpUnit
+from .gate_unit import GateUnit
 from .chrono_building import ChronoBuilding

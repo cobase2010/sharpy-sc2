@@ -9,6 +9,7 @@ from dummies.protoss import *
 from dummies.terran import *
 from dummies.zerg import *
 from dummies.debug import *
+# from dummies.FlexBot import FlexBot
 from sc2.player import Human, Bot, Computer, AbstractPlayer
 
 races = {
@@ -256,6 +257,7 @@ class BotDefinitions:
             DummyBuilder("voidray", "SharpRays", Race.Protoss, "voidray.py", MacroVoidray),
             DummyBuilder("zealot", "SharpKnives", Race.Protoss, "proxy_zealot_rush.py", ProxyZealotRushBot),
             DummyBuilder("tempest", "SharpTempests", Race.Protoss, "one_base_tempests.py", OneBaseTempests),
+            DummyBuilder("flexbot", "FlexBot", Race.Protoss, "FlexBot.py", FlexBot),
             # Zerg
             DummyBuilder("12pool", "BluntCheese", Race.Zerg, "twelve_pool.py", TwelvePool),
             DummyBuilder("200roach", "BluntRoaches", Race.Zerg, "macro_roach.py", MacroRoach),
