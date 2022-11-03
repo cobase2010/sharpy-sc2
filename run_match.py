@@ -39,7 +39,7 @@ def main():
             player2_score = 1.0 - player1_score
             
             print(f"===Match {match_num}: {m[0]} vs {m[1]}", result)
-            match_mgr.add_result(match_num, player_one=m[0], player_two=[1], 
+            match_mgr.add_result(match_num, player_one=m[0], player_two=m[1], 
                 player_one_score = player1_score, player_two_score = player2_score)
             print(f"Round: {round} Current standings after match {match_num}:")
             match_mgr.print_standings()
