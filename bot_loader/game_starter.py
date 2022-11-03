@@ -1,5 +1,6 @@
 import glob
 import os
+import sys
 import random
 import argparse
 from configparser import ConfigParser
@@ -83,6 +84,7 @@ class GameStarter:
 
     def play(self):
         # noinspection PyTypeChecker
+        print("argumnets:", sys.argv)
         parser = argparse.ArgumentParser(
             formatter_class=argparse.RawDescriptionHelpFormatter,
             description="Run a game with custom parameters.",
@@ -218,6 +220,7 @@ Builds:
                 raise Exception("Player 2 needed to win the game!")
         # release file handle
         sc2.main.logger.remove()
+        return result
 
     @staticmethod
     def setup_bot(player: AbstractPlayer, bot_code, enemy_text: str, args):

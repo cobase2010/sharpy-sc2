@@ -257,7 +257,7 @@ class BotDefinitions:
             DummyBuilder("voidray", "SharpRays", Race.Protoss, "voidray.py", MacroVoidray),
             DummyBuilder("zealot", "SharpKnives", Race.Protoss, "proxy_zealot_rush.py", ProxyZealotRushBot),
             DummyBuilder("tempest", "SharpTempests", Race.Protoss, "one_base_tempests.py", OneBaseTempests),
-            DummyBuilder("flexbot", "FlexBot", Race.Protoss, "FlexBot.py", FlexBot),
+            DummyBuilder("flexbot", "FlexBot", Race.Protoss, "flexbot.py", FlexBot),
             # Zerg
             DummyBuilder("12pool", "BluntCheese", Race.Zerg, "twelve_pool.py", TwelvePool),
             DummyBuilder("200roach", "BluntRoaches", Race.Zerg, "macro_roach.py", MacroRoach),
