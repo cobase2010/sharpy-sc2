@@ -22,12 +22,13 @@ def main():
     match_mgr = MatchManager(player_list)
     print(player_list)
     print("Restoring history...")
-    match_mgr.restore_history()
+    match_mgr.load_history()
+    match_mgr.update_standings()
     print("Current standings:")
     match_mgr.print_standings()
     # pairings = match_mgr.determine_pairings()
-    rounds = 10
-    starting_round = 3
+    rounds = 16
+    starting_round = 8
     match_num = 1
     pairings = match_mgr.get_programme(rounds, player_list)
     print(f"Starting round {starting_round}")
@@ -37,6 +38,7 @@ def main():
         print(f"Starting tournament of {len(pairings[i])} numbers of games...")
         print(f"Round {i} pairings")
         print(pairings[i])
+        results = []
         for m in pairings[i]:
             sys.argv = [sys.argv[0], f"--player1", f"{m[0]}", f"--player2", f"{m[1]}"]
             starter = GameStarter(definitions)
@@ -51,12 +53,23 @@ def main():
                 player2_score = 0.0
             
             print(f"===Match {match_num}: {m[0]} vs {m[1]}", result)
-            match_mgr.add_result(match_num, player_one=m[0], player_two=m[1], 
-                player_one_score = player1_score, player_two_score = player2_score)
-            print(f"Round: {i} Current standings after match {match_num}:")
-            match_mgr.print_standings()
-            print(match_mgr.match_history)
+            results.append([match_num, m[0], m[1], player1_score, player2_score])
+            # match_mgr.add_result(match_num, player_one=m[0], player_two=m[1], 
+            #     player_one_score = player1_score, player_two_score = player2_score)
+            # print(f"Round: {i} Current standings after match {match_num}:")
+            # match_mgr.print_standings()
+            # print(match_mgr.match_history)
             match_num += 1
+        #End of a round, saving history
+        for result in results:
+            match_mgr.add_result(result[0], player_one=result[1], player_two=result[2], 
+                player_one_score=result[3], player_two_score=result[4])
+        match_mgr.persist_history()
+        print(f"Round: {i} Current standings after match {match_num}:")
+        match_mgr.update_standings()
+        match_mgr.print_standings()
+        print(match_mgr.match_history)
+
     
     # subprocess.call("tasklist.exe |grep SC2 |awk '{print $2}' |xargs taskkill.exe /f /pid ")
 
