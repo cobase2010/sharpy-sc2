@@ -258,37 +258,39 @@ class MatchManager:
             table = self.next_table(table)
         return pairing_list
 
+    def restore_history(self):
+        self.list_of_players = ['4gate', 'adept', 'cannonrush', 'disruptor', 'dt', 'robo', 'stalker', 'voidray', 'zealot', 'tempest', 'flexbot', '12pool', '200roach', 'hydra', 'lings', 'macro', 'mutalisk', 'workerrush', 'lurker', 'roachburrow', 'banshee', 'bc', 'bio', 'cyclone', 'marine', 'oldrusty', 'tank', 'terranturtle', 'saferaven', 'silverbio', 'lingflood', 'lingspeed', 'randomzerg', 'randomprotoss', 'randomterran']
+        # history = {1: {'Player_1': '4gate', 'Player_2': 'randomterran', 'Score': '1.0-0.0', 'Result': 'W'}, 2: {'Player_1': 'randomprotoss', 'Player_2': 'adept', 'Score': '1.0-0.0', 'Result': 'W'}, 3: {'Player_1': 'randomzerg', 'Player_2': 'cannonrush', 'Score': '1.0-0.0', 'Result': 'W'}, 4: {'Player_1': 'lingspeed', 'Player_2': 'disruptor', 'Score': '1.0-0.0', 'Result': 'W'}, 5: {'Player_1': 'dt', 'Player_2': 'lingflood', 'Score': '1.0-0.0', 'Result': 'W'}, 6: {'Player_1': 'robo', 'Player_2': 'silverbio', 'Score': '1.0-0.0', 'Result': 'W'}, 7: {'Player_1': 'stalker', 'Player_2': 'saferaven', 'Score': '1.0-0.0', 'Result': 'W'}, 8: {'Player_1': 'voidray', 'Player_2': 'terranturtle', 'Score': '1.0-0.0', 'Result': 'W'}, 9: {'Player_1': 'zealot', 'Player_2': 'tank', 'Score': '1.0-0.0', 'Result': 'W'}, 10: {'Player_1': 'tempest', 'Player_2': 'oldrusty', 'Score': '1.0-0.0', 'Result': 'W'}, 11: {'Player_1': 'flexbot', 'Player_2': 'marine', 'Score': '1.0-0.0', 'Result': 'W'}, 12: {'Player_1': '12pool', 'Player_2': 'cyclone', 'Score': '1.0-0.0', 'Result': 'W'}, 13: {'Player_1': '200roach', 'Player_2': 'bio', 'Score': '1.0-0.0', 'Result': 'W'}, 14: {'Player_1': 'bc', 'Player_2': 'hydra', 'Score': '1.0-0.0', 'Result': 'W'}, 15: {'Player_1': 'banshee', 'Player_2': 'lings', 'Score': '1.0-0.0', 'Result': 'W'}, 16: {'Player_1': 'roachburrow', 'Player_2': 'macro', 'Score': '1.0-0.0', 'Result': 'W'}, 17: {'Player_1': 'lurker', 'Player_2': 'mutalisk', 'Score': '1.0-0.0', 'Result': 'W'}}
+        history = {1: {'Player_1': '4gate', 'Player_2': 'randomterran', 'Score': '1.0-0.0', 'Result': 'W'}, 2: {'Player_1': 'randomprotoss', 'Player_2': 'adept', 'Score': '1.0-0.0', 'Result': 'W'}, 3: {'Player_1': 'randomzerg', 'Player_2': 'cannonrush', 'Score': '1.0-0.0', 'Result': 'W'}, 4: {'Player_1': 'lingspeed', 'Player_2': 'disruptor', 'Score': '1.0-0.0', 'Result': 'W'}, 5: {'Player_1': 'dt', 'Player_2': 'lingflood', 'Score': '1.0-0.0', 'Result': 'W'}, 6: {'Player_1': 'robo', 'Player_2': 'silverbio', 'Score': '1.0-0.0', 'Result': 'W'}, 7: {'Player_1': 'stalker', 'Player_2': 'saferaven', 'Score': '1.0-0.0', 'Result': 'W'}, 8: {'Player_1': 'voidray', 'Player_2': 'terranturtle', 'Score': '1.0-0.0', 'Result': 'W'}, 9: {'Player_1': 'zealot', 'Player_2': 'tank', 'Score': '1.0-0.0', 'Result': 'W'}, 10: {'Player_1': 'tempest', 'Player_2': 'oldrusty', 'Score': '1.0-0.0', 'Result': 'W'}, 11: {'Player_1': 'flexbot', 'Player_2': 'marine', 'Score': '1.0-0.0', 'Result': 'W'}, 12: {'Player_1': '12pool', 'Player_2': 'cyclone', 'Score': '1.0-0.0', 'Result': 'W'}, 13: {'Player_1': '200roach', 'Player_2': 'bio', 'Score': '1.0-0.0', 'Result': 'W'}, 14: {'Player_1': 'bc', 'Player_2': 'hydra', 'Score': '1.0-0.0', 'Result': 'W'}, 15: {'Player_1': 'banshee', 'Player_2': 'lings', 'Score': '1.0-0.0', 'Result': 'W'}, 16: {'Player_1': 'roachburrow', 'Player_2': 'macro', 'Score': '1.0-0.0', 'Result': 'W'}, 17: {'Player_1': 'lurker', 'Player_2': 'mutalisk', 'Score': '1.0-0.0', 'Result': 'W'}, 18: {'Player_1': 'randomprotoss', 'Player_2': '4gate', 'Score': '1.0-0.0', 'Result': 'W'}, 19: {'Player_1': 'randomzerg', 'Player_2': 'randomterran', 'Score': '1.0-0.0', 'Result': 'W'}, 20: {'Player_1': 'adept', 'Player_2': 'lingspeed', 'Score': '1.0-0.0', 'Result': 'W'}, 21: {'Player_1': 'cannonrush', 'Player_2': 'lingflood', 'Score': '1.0-0.0', 'Result': 'W'}, 22: {'Player_1': 'silverbio', 'Player_2': 'disruptor', 'Score': '1.0-0.0', 'Result': 'W'}, 23: {'Player_1': 'dt', 'Player_2': 'saferaven', 'Score': '1.0-0.0', 'Result': 'W'}, 24: {'Player_1': 'robo', 'Player_2': 'terranturtle', 'Score': '1.0-0.0', 'Result': 'W'}, 25: {'Player_1': 'stalker', 'Player_2': 'tank', 'Score': '1.0-0.0', 'Result': 'W'}, 26: {'Player_1': 'voidray', 'Player_2': 'oldrusty', 'Score': '1.0-0.0', 'Result': 'W'}, 27: {'Player_1': 'zealot', 'Player_2': 'marine', 'Score': '1.0-0.0', 'Result': 'W'}, 28: {'Player_1': 'tempest', 'Player_2': 'cyclone', 'Score': '1.0-0.0', 'Result': 'W'}, 29: {'Player_1': 'flexbot', 'Player_2': 'bio', 'Score': '1.0-0.0', 'Result': 'W'}, 30: {'Player_1': '12pool', 'Player_2': 'bc', 'Score': '1.0-0.0', 'Result': 'W'}, 31: {'Player_1': 'banshee', 'Player_2': '200roach', 'Score': '1.0-0.0', 'Result': 'W'}, 32: {'Player_1': 'roachburrow', 'Player_2': 'hydra', 'Score': '1.0-0.0', 'Result': 'W'}, 33: {'Player_1': 'lings', 'Player_2': 'lurker', 'Score': '1.0-0.0', 'Result': 'W'}, 34: {'Player_1': 'workerrush', 'Player_2': 'macro', 'Score': '1.0-0.0', 'Result': 'W'}, 35: {'Player_1': '4gate', 'Player_2': 'randomzerg', 'Score': '1.0-0.0', 'Result': 'W'}, 36: {'Player_1': 'lingspeed', 'Player_2': 'randomprotoss', 'Score': '1.0-0.0', 'Result': 'W'}, 37: {'Player_1': 'lingflood', 'Player_2': 'randomterran', 'Score': '1.0-0.0', 'Result': 'W'}, 38: {'Player_1': 'adept', 'Player_2': 'silverbio', 'Score': '1.0-0.0', 'Result': 'W'}, 39: {'Player_1': 'cannonrush', 'Player_2': 'saferaven', 'Score': '1.0-0.0', 'Result': 'W'}, 40: {'Player_1': 'terranturtle', 'Player_2': 'disruptor', 'Score': '1.0-0.0', 'Result': 'W'}, 41: {'Player_1': 'dt', 'Player_2': 'tank', 'Score': '1.0-0.0', 'Result': 'W'}, 42: {'Player_1': 'robo', 'Player_2': 'oldrusty', 'Score': '1.0-0.0', 'Result': 'W'}, 43: {'Player_1': 'stalker', 'Player_2': 'marine', 'Score': '1.0-0.0', 'Result': 'W'}, 44: {'Player_1': 'voidray', 'Player_2': 'cyclone', 'Score': '1.0-0.0', 'Result': 'W'}, 45: {'Player_1': 'bio', 'Player_2': 'zealot', 'Score': '1.0-0.0', 'Result': 'W'}, 46: {'Player_1': 'tempest', 'Player_2': 'bc', 'Score': '1.0-0.0', 'Result': 'W'}, 47: {'Player_1': 'banshee', 'Player_2': 'flexbot', 'Score': '1.0-0.0', 'Result': 'W'}, 48: {'Player_1': 'roachburrow', 'Player_2': '12pool', 'Score': '1.0-0.0', 'Result': 'W'}, 49: {'Player_1': 'lurker', 'Player_2': '200roach', 'Score': '1.0-0.0', 'Result': 'W'}, 50: {'Player_1': 'hydra', 'Player_2': 'workerrush', 'Score': '1.0-0.0', 'Result': 'W'}, 51: {'Player_1': 'lings', 'Player_2': 'mutalisk', 'Score': '1.0-0.0', 'Result': 'W'}}
+        for k in history.keys():
+            self.add_result(k, history[k]['Player_1'], history[k]['Player_2'], 
+                float(history[k]['Score'].split('-')[0]), float(history[k]['Score'].split('-')[1]))
 
 def main():
-    list_of_players = ["Bulbasaur", 
-                        "Pikachu", 
-                        "Squirtle", 
-                        "Charmander",
-                        "Caterpie",
-                        "Pidgey",
-                        "Spearow",
-                        "Eevee"]
+    list_of_players = ['4gate', 'adept', 'cannonrush', 'disruptor', 'dt', 'robo', 'stalker', 'voidray', 'zealot', 'tempest', 'flexbot', '12pool', '200roach', 'hydra', 'lings', 'macro', 'mutalisk', 'workerrush', 'lurker', 'roachburrow', 'banshee', 'bc', 'bio', 'cyclone', 'marine', 'oldrusty', 'tank', 'terranturtle', 'saferaven', 'silverbio', 'lingflood', 'lingspeed', 'randomzerg', 'randomprotoss', 'randomterran']
     match_mgr = MatchManager(list_of_players)
     match_mgr.print_standings()
-    print("Initial pairing")
-    print(match_mgr.determine_pairings())
+    # print("Initial pairing")
+    # print(match_mgr.determine_pairings())
 
-    history = {0: {'Player_1': 'Eevee', 'Player_2': 'Bulbasaur', 'Score': '1.0-0.0', 'Result': 'W'},
-        1: {'Player_1': 'Pikachu', 'Player_2': 'Pidgey', 'Score': '1.0-0.0', 'Result': 'W'},
-        2: {'Player_1': 'Charmander', 'Player_2': 'Spearow', 'Score': '2.0-1.0', 'Result': 'W'},
-        3: {'Player_1': 'Squirtle', 'Player_2': 'Caterpie', 'Score': '1.0-0.0', 'Result': 'W'},
-        4: {'Player_1': 'Pikachu', 'Player_2': 'Squirtle', 'Score': '1.0-0.0', 'Result': 'W'},
-        5: {'Player_1': 'Charmander', 'Player_2': 'Eevee', 'Score': '1.0-1.0', 'Result': 'D'},
-        6: {'Player_1': 'Spearow', 'Player_2': 'Pidgey', 'Score': '1.0-1.0', 'Result': 'D'},
-        7: {'Player_1': 'Bulbasaur', 'Player_2': 'Caterpie', 'Score': '1.0-0.0', 'Result': 'W'}}
-    for k in history.keys():
-        match_mgr.add_result(k, history[k]['Player_1'], history[k]['Player_2'], 
-            float(history[k]['Score'].split('-')[0]), float(history[k]['Score'].split('-')[1]))
-    
+    # history = {0: {'Player_1': 'Eevee', 'Player_2': 'Bulbasaur', 'Score': '1.0-0.0', 'Result': 'W'},
+    #     1: {'Player_1': 'Pikachu', 'Player_2': 'Pidgey', 'Score': '1.0-0.0', 'Result': 'W'},
+    #     2: {'Player_1': 'Charmander', 'Player_2': 'Spearow', 'Score': '2.0-1.0', 'Result': 'W'},
+    #     3: {'Player_1': 'Squirtle', 'Player_2': 'Caterpie', 'Score': '1.0-0.0', 'Result': 'W'},
+    #     4: {'Player_1': 'Pikachu', 'Player_2': 'Squirtle', 'Score': '1.0-0.0', 'Result': 'W'},
+    #     5: {'Player_1': 'Charmander', 'Player_2': 'Eevee', 'Score': '1.0-1.0', 'Result': 'D'},
+    #     6: {'Player_1': 'Spearow', 'Player_2': 'Pidgey', 'Score': '1.0-1.0', 'Result': 'D'},
+    #     7: {'Player_1': 'Bulbasaur', 'Player_2': 'Caterpie', 'Score': '1.0-0.0', 'Result': 'W'}}
+    # history = {1: {'Player_1': '4gate', 'Player_2': 'randomterran', 'Score': '1.0-0.0', 'Result': 'W'}, 2: {'Player_1': 'randomprotoss', 'Player_2': 'adept', 'Score': '1.0-0.0', 'Result': 'W'}, 3: {'Player_1': 'randomzerg', 'Player_2': 'cannonrush', 'Score': '1.0-0.0', 'Result': 'W'}, 4: {'Player_1': 'lingspeed', 'Player_2': 'disruptor', 'Score': '1.0-0.0', 'Result': 'W'}, 5: {'Player_1': 'dt', 'Player_2': 'lingflood', 'Score': '1.0-0.0', 'Result': 'W'}, 6: {'Player_1': 'robo', 'Player_2': 'silverbio', 'Score': '1.0-0.0', 'Result': 'W'}, 7: {'Player_1': 'stalker', 'Player_2': 'saferaven', 'Score': '1.0-0.0', 'Result': 'W'}, 8: {'Player_1': 'voidray', 'Player_2': 'terranturtle', 'Score': '1.0-0.0', 'Result': 'W'}, 9: {'Player_1': 'zealot', 'Player_2': 'tank', 'Score': '1.0-0.0', 'Result': 'W'}, 10: {'Player_1': 'tempest', 'Player_2': 'oldrusty', 'Score': '1.0-0.0', 'Result': 'W'}, 11: {'Player_1': 'flexbot', 'Player_2': 'marine', 'Score': '1.0-0.0', 'Result': 'W'}, 12: {'Player_1': '12pool', 'Player_2': 'cyclone', 'Score': '1.0-0.0', 'Result': 'W'}, 13: {'Player_1': '200roach', 'Player_2': 'bio', 'Score': '1.0-0.0', 'Result': 'W'}, 14: {'Player_1': 'bc', 'Player_2': 'hydra', 'Score': '1.0-0.0', 'Result': 'W'}, 15: {'Player_1': 'banshee', 'Player_2': 'lings', 'Score': '1.0-0.0', 'Result': 'W'}, 16: {'Player_1': 'roachburrow', 'Player_2': 'macro', 'Score': '1.0-0.0', 'Result': 'W'}, 17: {'Player_1': 'lurker', 'Player_2': 'mutalisk', 'Score': '1.0-0.0', 'Result': 'W'}, 21: {'Player_1': '4gate', 'Player_2': 'randomprotoss', 'Score': '1.0-0.0', 'Result': 'W'}, 22: {'Player_1': 'randomzerg', 'Player_2': 'randomterran', 'Score': '1.0-0.0', 'Result': 'W'}, 23: {'Player_1': 'adept', 'Player_2': 'lingspeed', 'Score': '1.0-0.0', 'Result': 'W'}, 24: {'Player_1': 'lingflood', 'Player_2': 'cannonrush', 'Score': '1.0-0.0', 'Result': 'W'}}
+    # for k in history.keys():
+    #     match_mgr.add_result(k, history[k]['Player_1'], history[k]['Player_2'], 
+    #         float(history[k]['Score'].split('-')[0]), float(history[k]['Score'].split('-')[1]))
+    match_mgr.restore_history()
     match_mgr.update_standings()
     match_mgr.print_standings()
     print("Round 2 pairing")
-    print(match_mgr.determine_pairings())
+    pairings = match_mgr.get_programme(10, match_mgr.list_of_players)
+    print("number of games:", 10 * len(pairings[0]))
     
 
 if __name__ == "__main__":

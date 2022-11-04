@@ -3,6 +3,7 @@ import os
 import sys
 import random
 import argparse
+import subprocess
 from configparser import ConfigParser
 from datetime import datetime
 from typing import List, Optional, Dict
@@ -14,6 +15,7 @@ from bot_loader.runner import MatchRunner
 from sc2 import maps
 from sc2.data import Result
 from sc2.paths import Paths
+from sc2 import paths, wsl
 from sc2.player import AbstractPlayer, Bot, Human
 from sharpy.knowledges import KnowledgeBot
 from sharpy.tools import LoggingUtility
@@ -181,7 +183,7 @@ Builds:
         if not os.path.isdir(folder):
             os.mkdir(folder)
 
-        time = datetime.now().strftime("%Y-%m-%d %H_%M_%S")
+        time = datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         randomizer = random.randint(0, 999999)
         # Randomizer is to make it less likely that games started at the same time have same name
         file_name = f"{player2}_{map_name}_{time}_{randomizer}_{player1}"
@@ -202,6 +204,9 @@ Builds:
         replay_file =f"{folder}/{file_name}"
 
         print("Real time:", args.real_time)
+        if paths.PF in {"WSL1", "WSL2"}:
+            # HACK: launch a separate python process to kill SC2 processes on WSL
+            subprocess.Popen(f"python kill_sc2.py {replay_file}.SC2Replay".split(" "))
         result = runner.run_game(
             maps.get(map_name),
             [player1_bot, player2_bot],
