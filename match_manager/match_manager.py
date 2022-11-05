@@ -313,9 +313,9 @@ def main():
 
     match_mgr.update_standings()
     match_mgr.print_standings()
-    print("Round 2 pairing")
+    print("Next round number:", len(match_mgr.match_history.keys())/17)
     pairings = match_mgr.get_programme(10, match_mgr.list_of_players)
-    print("number of games:", 10 * len(pairings[0]))
+    print("number of games remaining:", 16 * len(pairings[0]) - len(match_mgr.match_history.keys()))
     
 
 if __name__ == "__main__":

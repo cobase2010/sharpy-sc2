@@ -28,7 +28,7 @@ def main():
     match_mgr.print_standings()
     # pairings = match_mgr.determine_pairings()
     rounds = 16
-    starting_round = 8
+    starting_round = 14
     match_num = 1
     pairings = match_mgr.get_programme(rounds, player_list)
     print(f"Starting round {starting_round}")
