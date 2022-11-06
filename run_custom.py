@@ -26,6 +26,8 @@ def main():
     print("===Game over:", result)
     print("player 1 result:", result[0].name)
     
+    return result
+    
     # subprocess.call("tasklist.exe |grep SC2 |awk '{print $2}' |xargs taskkill.exe /f /pid ")
 
 if __name__ == "__main__":

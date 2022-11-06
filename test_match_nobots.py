@@ -16,6 +16,7 @@ from sc2 import maps
 from sc2.data import Result
 from sc2.paths import Paths
 from sc2 import paths, wsl
+from sc2.main import GameMatch, run_game, run_multiple_games
 from sc2.player import AbstractPlayer, Bot, Human
 from sharpy.knowledges import KnowledgeBot
 from sharpy.tools import LoggingUtility
@@ -207,26 +208,69 @@ Builds:
         if paths.PF in {"WSL1", "WSL2"}:
             # HACK: launch a separate python process to kill SC2 processes on WSL
             subprocess.Popen(f"python kill_sc2.py {replay_file}.SC2Replay".split(" "))
-        result = runner.run_game(
-            maps.get(map_name),
-            [player1_bot, player2_bot],
-            player1_id=player1,
-            realtime=args.real_time,
-            game_time_limit=(30 * 60),
-            save_replay_as=f"{folder}/{file_name}.SC2Replay",
-            start_port=args.port,
+        # result = runner.run_game(
+        #     maps.get(map_name),
+        #     [player1_bot, player2_bot],
+        #     player1_id=player1,
+        #     realtime=args.real_time,
+        #     game_time_limit=(30 * 60),
+        #     save_replay_as=f"{folder}/{file_name}.SC2Replay",
+        #     start_port=args.port,
+        # )
+        
+
+        matches = []
+        for i in range(10):
+            # player1 = random.choice(list(self.random_bots.keys()))
+            # player2 = random.choice(list(self.random_bots.keys()))
+            player1 = "stalker"
+            player2 = "flexbot"
+            player1_split: List[str] = player1.split(".")
+            player1_type: str = player1_split.pop(0)
+
+            player2_split: List[str] = player2.split(".")
+            player2_type: str = player2_split.pop(0)
+
+            if player1_type not in self.definitions.player1:
+                keys = list(self.definitions.player1.keys())
+                print(f"Player1 type {player1} not found in:{new_line} {new_line.join(keys)}")
+                return
+
+            player2_bot: Optional[AbstractPlayer]
+
+            if player2_type not in self.definitions.player2:
+                keys = list(self.definitions.player2.keys())
+                print(f"Enemy type {player2_type} not found in player types:{new_line}{new_line.join(keys)}")
+                return
+            else:
+                player2_bot = self.players[player2_type](player2_split)
+
+            player1_bot: AbstractPlayer = self.players[player1_type](player1_split)
+            matches.append(
+                GameMatch(
+                    # maps.get(map_name),
+                    maps.get("AbyssalReefLE"),
+                    [player1_bot, player2_bot],
+                    # player1_id=player1,
+                    realtime=args.real_time,
+                    game_time_limit=(30 * 60)
+                    # save_replay_as=f"{folder}/{file_name}.SC2Replay"
+                    # start_port=args.port,
+                ),
+            )
+
+        result = run_multiple_games(
+            matches
         )
-
-        with open("./results.txt", "a") as output_file:
-            output_file.write(f"{player1}  {player2}   {map_name}  {result[0].name}\n")
-
-        # print("Renaming replay file to", f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
-        # os.rename(replay_file, f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
-        if args.requirewin:
-            if args.requirewin == "1" and result != Result.Victory:
-                raise Exception("Player 1 needed to win the game!")
-            if args.requirewin == "2" and result != Result.Defeat:
-                raise Exception("Player 2 needed to win the game!")
+        # [{<sc2.player.Bot object at 0x7f6459dfb5e0>: <Result.Victory: 1>, <sc2.player.Bot object at 0x7f6459dfb850>: <Result.Defeat: 2>}]
+        # result = [result[0][player1_bot], result[0][player2_bot]]
+        # # print("Renaming replay file to", f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
+        # # os.rename(replay_file, f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
+        # if args.requirewin:
+        #     if args.requirewin == "1" and result != Result.Victory:
+        #         raise Exception("Player 1 needed to win the game!")
+        #     if args.requirewin == "2" and result != Result.Defeat:
+        #         raise Exception("Player 2 needed to win the game!")
         # release file handle
         sc2.main.logger.remove()
         return result
@@ -242,3 +286,19 @@ Builds:
             my_bot.raw_affects_selection = args.raw_selection
             if args.release:
                 my_bot.config = get_config(False)
+                
+def main():
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    ladder_bots_path = os.path.join("Bots")
+    ladder_bots_path = os.path.join(root_dir, ladder_bots_path)
+    definitions: BotDefinitions = BotDefinitions(ladder_bots_path)
+    starter = GameStarter(definitions)
+    result = starter.play()
+    print("result is valid: ", isinstance(result, list))
+    print("result:", result)
+    
+
+if __name__ == "__main__":
+    #main_old()
+    # TODO Why does "run_multiple_games" get stuck?
+    main()

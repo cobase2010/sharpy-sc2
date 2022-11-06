@@ -111,3 +111,4 @@ tools/build_order.json
 sc2-data-reader.exe
 .DS_Store
 saved_hisotry.pickle.bak
+results.txt
