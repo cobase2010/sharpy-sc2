@@ -1,8 +1,12 @@
 import subprocess
 import time
+from os import environ
 
 
 for n in range(1,100):
-    subprocess.run("python run_custom.py -p1 4gate".split(" "))
-    time.sleep(120)
-    # subprocess.call("tasklist.exe |grep SC2 |awk '{print $2}' |xargs taskkill.exe /f /pid ")
+    if 'PYTHON' in environ:
+        subprocess.run("$PYTHON run_custom.py -p1 4gate".split(" "))
+        
+    else:
+        subprocess.run("python run_custom.py -p1 4gate".split(" "))
+    time.sleep(10)

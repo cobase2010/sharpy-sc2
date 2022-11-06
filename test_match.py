@@ -221,10 +221,10 @@ Builds:
 
         matches = []
         for i in range(10):
-            # player1 = random.choice(list(self.random_bots.keys()))
-            # player2 = random.choice(list(self.random_bots.keys()))
-            player1 = "stalker"
-            player2 = "flexbot"
+            player1 = random.choice(list(self.random_bots.keys()))
+            player2 = random.choice(list(self.random_bots.keys()))
+            # player1 = "stalker"
+            # player2 = "flexbot"
             player1_split: List[str] = player1.split(".")
             player1_type: str = player1_split.pop(0)
 
