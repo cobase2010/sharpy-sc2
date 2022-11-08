@@ -498,8 +498,12 @@ class GetScoutingData(ActBase):
             # else:
             if enemy_rush:
                 self.build_order = 2
+                print("Flexbot Rush Defend BO chosen.")
             else:
-                self.build_order = random.choice([0, 1, 3])
+                # self.build_order = random.choice([0, 1, 3])
+
+                self.build_order = 0
+                print("FlexBot 2-base Robo BO")
     
             if self.build_order == 0:
                 await self.ai.chat_send(
@@ -666,6 +670,9 @@ class FlexBot(KnowledgeBot):
         self.proxy_location = None
         self.train_data = []
         self.scout = GetScoutingData()
+        # self.knowledge.print(f"Flexbot Build Order {self.scout.build_order}", tag="Start", stats=False)
+        print(f"Flexbot Build Order {self.scout.build_order}")
+        
 
     # def configure_managers(self) -> Optional[List[ManagerBase]]:
     #     return [
@@ -809,6 +816,8 @@ class FlexBot(KnowledgeBot):
             Step(lambda k: self.scout.build_order == 1, self.four_gate()),
             Step(lambda k: self.scout.build_order == 2, self.defend_dt()),
             Step(lambda k: self.scout.build_order == 3, self.skytoss()),
+            # Step(lambda k: self.scout.build_order == 4, self.two_base_stalker()),
+            
             SequentialList([
                 Step(None, PlanZoneDefense(), skip=UnitExists(UnitTypeId.PROBE, 23)),
                 RestorePower(),
@@ -818,6 +827,7 @@ class FlexBot(KnowledgeBot):
         ])
 
     def four_gate(self) -> ActBase:
+        print(f"Flexbot Build Order four_gate")
         #TODO: Follow-up BO
         random_location = random.randrange(0, 2)
         if random_location == 0 and not self.knowledge.enemy_race == Race.Zerg:
@@ -863,6 +873,7 @@ class FlexBot(KnowledgeBot):
         ])
 
     def two_base_robo(self) -> ActBase:
+        print(f"Flexbot Build Order two_base_robo")
         #TODO: Archons as follow-up after first push (ActArchon)
         pylon_pos = self.game_info.map_center.position
         attack = PlanZoneAttack(12)
@@ -936,6 +947,7 @@ class FlexBot(KnowledgeBot):
         ])
 
     def defend_dt(self) -> ActBase:
+        print(f"Flexbot Build Order defend_dt")
         #TODO: Proxy-Pylon for DTs only, Follow-Up
         #TODO: Give DTs something to do if everything is dead near them
         pylon_pos = self.game_info.map_center.position
@@ -1003,6 +1015,7 @@ class FlexBot(KnowledgeBot):
         ])
 
     def skytoss(self) -> ActBase:
+        print(f"Flexbot Build Order skytoss")
         #TODO: Follow-up
         #TODO: Don't suicide the Oracle if there are units already waiting
         #TODO: Strange freezing of Units and Groups after the first attack
@@ -1081,6 +1094,7 @@ class FlexBot(KnowledgeBot):
         ])
 
     def two_base_stalker(self) -> ActBase:
+        print(f"Flexbot Build Order two_base_stalker")
         #TODO: Adapt Unit Composition, Improve Timings, Hallu-Phoenix-Scout
         natural = self.zone_manager.expansion_zones[-3]
         pylon_pos: Point2 = natural.behind_mineral_position_center
@@ -1094,8 +1108,8 @@ class FlexBot(KnowledgeBot):
                         [
                             Step(UnitExists(UnitTypeId.NEXUS, 2),
                                  ActUnit(UnitTypeId.PROBE, UnitTypeId.NEXUS, 44)),
-                            StepBuildGas(3, skip=RequiredGas(300)),
-                            StepBuildGas(4, skip=RequiredGas(200)),
+                            StepBuildGas(3, skip=Gas(300)),
+                            StepBuildGas(4, skip=Gas(200)),
                         ],
                         [
                             Step(None, ProtossUnit(UnitTypeId.SENTRY, 1),

@@ -216,9 +216,15 @@ Builds:
             save_replay_as=f"{folder}/{file_name}.SC2Replay",
             start_port=args.port,
         )
+        if isinstance(result, Result):
+            result_str = result.name
+        elif isinstance(result, list):
+            result_str = result[0].name
+        else:
+            result_str = "undefined"
 
         with open("./results.txt", "a") as output_file:
-            output_file.write(f"{player1}  {player2}   {map_name}  {result[0].name}\n")
+            output_file.write(f"{player1}  {player2}   {map_name}  {result_str}\n")
 
         # print("Renaming replay file to", f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
         # os.rename(replay_file, f"{replay_file}_{result._name_ if isinstance(result, Result) else result}.SC2Replay")
