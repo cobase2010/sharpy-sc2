@@ -103,7 +103,6 @@ class GridBuilding(ActBuilding):
         if count >= self.to_count:
             if self.builder_tag is not None:
                 self.clear_worker()
-
             return True  # Step is done
 
         if (
@@ -172,6 +171,7 @@ class GridBuilding(ActBuilding):
                         await self.build_terran(worker, count, position)
                     else:
                         await self.build_zerg(worker, count, position)
+                    self.print(f"{self.unit_type} is building.")
                 return False
 
             if self.priority and wait_time < time:
